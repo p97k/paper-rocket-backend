@@ -11,7 +11,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not connect to database: %s", err)
 	} else {
-		log.Printf("hey there! connected to database.")
+		log.Printf("connected to database!")
 	}
 
 	router.InitRouter(dbConnection.GetDB())
