@@ -27,6 +27,6 @@ func initBaseRouter(c *gin.Context) {
 	c.JSON(http.StatusOK, util.Response{
 		Data:    nil,
 		Status:  http.StatusOK,
-		Message: "logout successfully",
+		Message: "welcome to paper rocket app! :))",
 	})
 }
