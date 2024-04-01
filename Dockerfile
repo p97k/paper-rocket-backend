@@ -2,10 +2,10 @@
 FROM golang:latest
 
 # Set the working directory to /app
-WORKDIR /
+WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY . /
+COPY . /app
 
 # Download and install any required dependencies
 RUN go mod download
@@ -17,4 +17,4 @@ RUN go build -o main .
 EXPOSE 8080
 
 # Define the command to run the app when the container starts
-CMD ["/cmd/main"]
+CMD ["/app/main"]
