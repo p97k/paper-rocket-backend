@@ -12,7 +12,7 @@ type Database struct {
 func NewDatabase() (*Database, error) {
 	db, err := sql.Open(
 		"postgres",
-		"postgresql://root:password@localhost:5430/paper-rocket?sslmode=disable")
+		"postgresql://root:password@localhost:5432/paper-rocket?sslmode=disable")
 	if err != nil {
 		return nil, err
 	}
