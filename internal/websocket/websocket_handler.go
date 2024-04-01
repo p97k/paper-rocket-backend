@@ -17,11 +17,6 @@ func NewHandler(h *Hub) *Handler {
 	}
 }
 
-type CreateRoomReq struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
 func (h *Handler) CreateRoom(c *gin.Context) {
 	var req CreateRoomReq
 	if err := c.ShouldBindJSON(&req); err != nil {
@@ -126,16 +121,11 @@ func (h *Handler) LeaveRoom(c *gin.Context) {
 	cl.ReedMessage(h.hub)
 }
 
-type RoomRes struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
-}
-
 func (h *Handler) GetRooms(c *gin.Context) {
-	rooms := make([]RoomRes, 0)
+	rooms := make([]CreateRoomRes, 0)
 
 	for _, r := range h.hub.Rooms {
-		rooms = append(rooms, RoomRes{
+		rooms = append(rooms, CreateRoomRes{
 			ID:   r.ID,
 			Name: r.Name,
 		})
