@@ -93,7 +93,7 @@ func (s *service) Login(c context.Context, req *LoginUserReq) (*LoginUserRes, er
 
 func (s *service) CheckUserExist(ctx context.Context, req *CreateUserReq) (string, bool) {
 	user, _ := s.Repository.GetUserByEmail(ctx, req.Email)
-	if user != nil {
+	if user.ID != 0 {
 		return "a user with this email already exist!", false
 	}
 
