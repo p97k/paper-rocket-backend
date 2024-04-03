@@ -1,5 +1,5 @@
 # Use an official Golang runtime as a parent image
-FROM golang:latest
+FROM golang:1.20.5 as base
 
 # Set the working directory to /app
 WORKDIR /app
@@ -9,6 +9,9 @@ COPY . /app
 
 # Download and install any required dependencies
 RUN go mod download
+
+# Install Deps
+RUN go mod tidy
 
 # Build the Go app
 RUN go build -o main .
