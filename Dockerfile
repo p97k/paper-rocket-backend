@@ -10,8 +10,8 @@ COPY . /app
 # Download and install any required dependencies
 RUN go mod download
 
-# Install Deps
-RUN go mod tidy
+## Install dependencies
+#RUN go mod tidy
 
 # Build the Go app
 RUN go build -o main .
