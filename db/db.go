@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/lib/pq"
 )
 
@@ -10,12 +11,14 @@ type Database struct {
 }
 
 func NewDatabase() (*Database, error) {
-	db, err := sql.Open(
-		"postgres",
-		"postgresql://ubuntu-paper-rocket-cloud:uBenZsyrsw@188.121.97.228:5432/paper-rocket?sslmode=disable")
+	connStr := "user=root password=password dbname=paper_rocket sslmode=disable"
+
+	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Println("Successfully connected to the database!")
 
 	return &Database{db: db}, nil
 }
