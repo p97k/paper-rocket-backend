@@ -1,11 +1,12 @@
-DB_CONTAINER_NAME=postgres15
+DB_CONTAINER_NAME=server-postgres-1
+DB_NAME=paper_rocket
 POSTGRES_VERSION=15-alpine
 POSTGRES_USER=root
 POSTGRES_PASSWORD=password
-DB_PORT=5432
+DB_PORT=5433
 
 postgres:
-	docker exec -it $(DB_CONTAINER_NAME) psql
+	docker exec -it $(DB_CONTAINER_NAME) psql -U $(POSTGRES_USER) $(DB_NAME)
 createdb:
 	docker exec -it $(DB_CONTAINER_NAME)  --username=$(POSTGRES_USER) --owner=$(POSTGRES_USER)
 dropdb:

@@ -1,13 +1,20 @@
 version: '3.8'
 
+networks:
+  default:
+    external:
+      name: sth-network
+
 services:
   paper-rocket:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
       - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
+      - POSTGRES_PORT=5433
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=paper_rocket
@@ -16,11 +23,16 @@ services:
 
   postgres:
     image: postgres:15-alpine
+    container_name: server-postgres-1
     restart: always
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=paper_rocket
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d paper_rocket -U root"]
+    ports:
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 

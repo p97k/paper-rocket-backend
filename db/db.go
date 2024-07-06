@@ -11,9 +11,9 @@ type Database struct {
 }
 
 func NewDatabase() (*Database, error) {
-	connStr := "user=root password=password dbname=paper_rocket sslmode=disable"
+	conSting := "host=server-postgres-1 port=5433 user=root password=password dbname=paper_rocket sslmode=disable"
 
-	db, err := sql.Open("postgres", connStr)
+	db, err := sql.Open("postgres", conSting)
 	if err != nil {
 		return nil, err
 	}

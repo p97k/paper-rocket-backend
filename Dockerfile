@@ -23,7 +23,7 @@ RUN go build -o /app/paper-rocket .
 FROM alpine:3.17
 
 # Set the working directory inside the container
-WORKDIR /root/
+WORKDIR /app
 
 # Copy the built Go application from the builder stage
 COPY --from=builder /app/paper-rocket .
